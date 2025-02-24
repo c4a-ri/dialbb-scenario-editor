@@ -1,4 +1,4 @@
-# DialBB GUI シナリオ・エディタ
+# DialBB Scenario Editor Frontend
 
 ### 開発環境の構築
 * vite + vue 3 + typescript 環境でビルドを行っています．  
@@ -11,7 +11,7 @@
   node.js 21.6.1  
 
 * セットアップ  
-  gui_editor/フォルダで
+  このフォルダで
 ```
 npm install
 ```
@@ -28,10 +28,10 @@ npm run dev
 ```
 npm run build
 ```
-  dialbb/no_code/gui_editor/フォルダにリリース物が生成されます  
-  
+  ../フォルダにリリース物が生成されます  
 
 ### シナリオ・エディタの起動方法  
+
 dialbb/no_code/README を参照.  
 
 
