@@ -96,5 +96,5 @@ build-backend = "poetry.core.masonry.api"
 
 
 [tool.poetry.scripts]
-dialbb-scenario_editor = 'dialbb_senario_editor.main:main'
+dialbb-scenario-editor = 'dialbb_scenario_editor.main:main'
 

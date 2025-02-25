@@ -10,8 +10,8 @@ export default defineConfig({
   ],
   base: "./",
   build: {
-    outDir: "../dialbb_scenario_editor/templates",
-    assetsDir: "../dialbb_scenario_editor/static/assets",
+    outDir: "../dialbb_scenario_editor/editor_gui",
+    assetsDir: "static/assets",
     emptyOutDir: true,
   },
   resolve: {

@@ -5,8 +5,8 @@ import tkinter as tk
 from tkinter import filedialog
 import argparse
 
-TEMPLATE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'templates')
-STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'static')
+TEMPLATE_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'editor_gui')
+STATIC_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'editor_gui/static')
 print(f'template_folder={TEMPLATE_DIR}, static_folder={TEMPLATE_DIR}')
 
 input_json_file = ""
