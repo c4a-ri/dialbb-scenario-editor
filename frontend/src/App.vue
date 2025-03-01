@@ -31,7 +31,10 @@ const doExport =  async () => {
   console.log("Click Button doExport()");
   const result = await editor.value.saveModule(import.meta.env.DEV, 'save.json');
   if ('warning' in result) {
-    openInformationDialog(result['warning']);
+    openInformationDialog('Warning', result['warning']);
+  }
+  else {
+    openInformationDialog('Information', 'Data saving completed.');
   }
 }
 
@@ -56,10 +59,11 @@ const addTypeConfirm = (value: string) => {
 
 // Information Dialog表示
 const childRef3 = ref()
-const infoDlgTitle = ref('Warning');
+const infoDlgTitle = ref('');
 const infoDlgMessage = ref('');
 
-const openInformationDialog = (msg: string) => {
+const openInformationDialog = (title: string, msg: string) => {
+  infoDlgTitle.value = title;
   infoDlgMessage.value = msg;
   // 子コンポーネント起動
   childRef3.value.openDialog();
