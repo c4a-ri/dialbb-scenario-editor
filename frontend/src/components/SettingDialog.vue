@@ -122,27 +122,27 @@ defineExpose({
                 </div>
                 <div v-else-if="nodeKind == 'userNode'">
                   <div class="mb-3">
-                      <label for="user-num" class="col-form-label">priority number:</label>
+                      <label for="user-num" class="col-form-label">優先度（0以上の整数）:</label>
                       <input type="number" id="user-num" v-model="inputPriNum"
                                   title="Input the priority number in the state"></input>
                   </div>
                   <div class="mb-3">
-                      <label for="user-utter" class="col-form-label">user utterance example:</label>
+                      <label for="user-utter" class="col-form-label">ユーザ発話の例（使われません）:</label>
                       <textarea class="form-control" id="user-utter" v-model="inputUser"
                                   title="Input the user utterance example"></textarea>
                   </div>
                   <div class="mb-3">
-                      <label for="utter-type" class="col-form-label">user utterance type:</label>
+                      <label for="utter-type" class="col-form-label">ユーザ発話タイプ:</label>
                       <textarea class="form-control" id="utter-type" v-model="inputType"
                                   title="Input the user utterance type"></textarea>
                   </div>
                   <div class="mb-3">
-                      <label for="condition" class="col-form-label">conditions:</label>
+                      <label for="condition" class="col-form-label">遷移の条件:</label>
                       <textarea class="form-control" id="condition" v-model="inputCondition"
                                   title="Input the conditions"></textarea>
                   </div>
                   <div class="mb-3">
-                      <label for="action" class="col-form-label">actions:</label>
+                      <label for="action" class="col-form-label">遷移時のアクション（上級者用）:</label>
                       <textarea class="form-control" id="user-utter" v-model="inputAction"
                                   title="Input the actions"></textarea>
                   </div>

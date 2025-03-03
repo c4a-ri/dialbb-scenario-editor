@@ -30,27 +30,27 @@ export class userNode extends Classic.Node<
     // Rowソート番号
     this.addControl(
       "seqnum",
-      new CustomInputControl("number", "priority", { initial: seqnum, readonly: true })
+      new CustomInputControl("number", "優先度", { initial: seqnum, readonly: true })
     );
     // ユーザ発話
     this.addControl(
       "utterance",
-      new CustomInputControl("text", "user utterance example", { initial: userUtter, readonly: true })
+      new CustomInputControl("text", "発話例", { initial: userUtter, readonly: true })
     );
     // ユーザ発話タイプ
     this.addControl(
       "type",
-      new CustomInputControl("text", "user utterance type", { initial: type, readonly: true })
+      new CustomInputControl("text", "発話タイプ", { initial: type, readonly: true })
     );
     // 条件
     this.addControl(
       "conditions",
-      new CustomInputControl("text", "conditions", { initial: conditions, readonly: true })
+      new CustomInputControl("text", "遷移の条件", { initial: conditions, readonly: true })
     );
     // アクション
     this.addControl(
       "actions",
-      new CustomInputControl("text", "actions", { initial: actions, readonly: true })
+      new CustomInputControl("text", "遷移時のアクション", { initial: actions, readonly: true })
     );
     // 遷移する状態
     this.addControl(

@@ -183,8 +183,8 @@ export async function createEditor(container: HTMLElement) {
   // コンテキストメニューの定義
   const contextMenu = new ContextMenuPlugin<Schemes>({
     items: ContextMenuPresets.classic.setup([
-      ["Add SystemNode", () => createNode(context, "systemNode", null)],
-      ["Add UserNode", () => createNode(context, "userNode", null)],
+      ["システムノード追加", () => createNode(context, "systemNode", null)],
+      ["ユーザノード追加", () => createNode(context, "userNode", null)],
     ])
   });
   area.use(contextMenu);

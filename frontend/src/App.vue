@@ -34,7 +34,7 @@ const doExport =  async () => {
     openInformationDialog('Warning', result['warning']);
   }
   else {
-    openInformationDialog('Information', 'Data saving completed.');
+    openInformationDialog('Information', 'データを保存しました。');
   }
 }
 

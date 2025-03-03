@@ -39,7 +39,7 @@ export function setup<Schemes extends BSchemes>(nodes: ItemDefinition<Schemes>[]
     }
 
     const deleteItem: Item = {
-      label: 'Delete',
+      label: '削除',
       key: 'delete',
       async handler() {
         if (context instanceof systemNode ||
@@ -77,7 +77,7 @@ export function setup<Schemes extends BSchemes>(nodes: ItemDefinition<Schemes>[]
 
     // Dialog Pop-up (added ohtaki)
     const dialogItem: Item = {
-      label: 'Edit',
+      label: '編集',
       key: 'dialog',
       async handler() {
         const nodeId = context.id

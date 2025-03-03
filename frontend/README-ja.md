@@ -28,10 +28,7 @@ npm run dev
 ```
 npm run build
 ```
-  ../フォルダにリリース物が生成されます  
+  `../dialbb_scenario_editor`フォルダにリリース物が生成されます  
 
-### シナリオ・エディタの起動方法  
-
-dialbb/no_code/README を参照.  
 
 

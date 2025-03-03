@@ -23,7 +23,7 @@ export class systemNode extends Classic.Node<
     // 状態-タイプ
     this.addControl(
       "type",
-      new CustomInputControl("text", "type", { initial: type, readonly: true })
+      new CustomInputControl("text", "ノードタイプ", { initial: type, readonly: true })
     );
     // 状態-名称（不要になったので隠す）
     this.addControl(
@@ -33,7 +33,7 @@ export class systemNode extends Classic.Node<
     // システム発話パターン
     this.addControl(
       "utterance",
-      new CustomInputControl("text", "utterance", { initial: sysUtter, readonly: true })
+      new CustomInputControl("text", "発話", { initial: sysUtter, readonly: true })
     );
 
     // 入出力ソケットの実装
