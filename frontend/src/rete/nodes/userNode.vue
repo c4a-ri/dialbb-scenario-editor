@@ -1,6 +1,7 @@
 <template>
   <div class="node" :class="{ selected: data.selected }" :style="nodeStyles()" data-testid="node">
     <div class="title" data-testid="title">ユーザ</div>
+    <div class="node-id-p"><div v-if="id" class="node-id-c">id:{{ id }}</div></div>
     <div class="socket-list">
       <!-- Inputs-->
       <div class="input" v-for="[key, input] in inputs()" :key="key + seed" :data-testid="'input-' + key">
@@ -58,6 +59,8 @@
       height: Number.isFinite(props.data.height) ? `${props.data.height}px` : ''
     }
   };
+  const id = props.data.nodeId;
+
   const inputs = () => {
     return sortByIndex(Object.entries(props.data.inputs))
   };
@@ -97,7 +100,7 @@
       color: black;
       font-family: sans-serif;
       font-size: 24px;
-      padding: 8px;
+      padding: 8px 8px 1px 8px;
     }
   
     .socket-list {
@@ -135,6 +138,18 @@
 
     .control {
       padding: $socket-margin math.div($socket-size, 2) + $socket-margin;
+    }
+
+    .node-id-p {
+      text-align: right;
+      margin-right: 5px;
+    }
+    .node-id-c {
+      color: black;
+      display: inline-block;
+      background: #ffffffda;
+      border-radius: 10px;
+      padding: 5px;
     }
   }
 </style>

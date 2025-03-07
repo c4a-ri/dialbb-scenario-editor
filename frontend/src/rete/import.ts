@@ -18,7 +18,8 @@ export async function createNode(
       const ctrl = data.controls;
       node = new systemNode(process,
         (node) => area.update("control", node.id),
-        ctrl.type.value, ctrl.status.value, ctrl.utterance.value
+        ctrl.type.value, ctrl.status.value, ctrl.utterance.value,
+        data.id
       );
     } else {
       node = new systemNode(process,
@@ -34,7 +35,8 @@ export async function createNode(
         (node) => area.update("control", node.id),
         ctrl.utterance.value, ctrl.type.value,
         ctrl.conditions.value, ctrl.actions.value,
-        ctrl.seqnum.value, ctrl.nextStatus.value
+        ctrl.seqnum.value, ctrl.nextStatus.value,
+        data.id
       );
     } else {
       node = new userNode(process,

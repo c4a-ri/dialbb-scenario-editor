@@ -13,13 +13,18 @@ export class systemNode extends Classic.Node<
   implements DataflowNode {
   width = 220;
   height = 340;
+  nodeId = "";
+
   constructor(
     // change?: (value: number) => void,
     change?: () => void,
     private update?: (control: Classic.InputControl<"text">) => void,
-    type: string = "", status: string = "", sysUtter: string = ""
+    type: string = "", status: string = "", sysUtter: string = "",
+    nodeId: string = ""
     ) {
     super("systemNode");
+    this.nodeId = nodeId == "" ? this.id : nodeId;
+    
     // 状態-タイプ
     this.addControl(
       "type",
