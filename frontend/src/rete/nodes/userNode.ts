@@ -16,7 +16,9 @@ export class userNode extends Classic.Node<
   >
   implements DataflowNode {
   width = 220;
-  height = 370;
+  height = 390;
+  nodeId = "";
+
   constructor(
     // change?: (value: number) => void,
     // initial?: { left?: number; right?: number },
@@ -24,9 +26,12 @@ export class userNode extends Classic.Node<
     private update?: (control: Classic.InputControl<"text">) => void,
     userUtter: string = "", type: string = "",
     conditions: string = "", actions: string = "",
-    seqnum: number = 0, nextSt: string = ""
+    seqnum: number = 0, nextSt: string = "",
+    nodeId: string = ""
   ) {
     super("userNode");
+    this.nodeId = nodeId == "" ? this.id : nodeId;
+
     // Rowソート番号
     this.addControl(
       "seqnum",
