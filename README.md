@@ -6,6 +6,11 @@ DialBB Scenario Editor contains GUI scenario editor for DialBB-NC ([DialBB](http
 
 It is built with [rete.js](https://retejs.org/), and licensed under MIT License.
 
+## Download
+
+The frontend program can be downloaded from [this page](https://c4a-ri.github.io/dialbb-scenario-editor/).
+
+
 ## Test
 
 To test the scenario editor, type the following to invoke the server.
@@ -16,10 +21,6 @@ python main.py
 ```
 
 Then access `http://localhost:5000` from a browser.
-
-## Download
-
-The frontend program can be downloaded from [this page](https://c4a-ri.github.io/dialbb-scenario-editor/).
 
 ## Build
 
