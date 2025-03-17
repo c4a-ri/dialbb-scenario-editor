@@ -17,11 +17,15 @@ python main.py
 
 Then access `http://localhost:5000` from a browser.
 
+## Download
+
+The frontend program can be downloaded from [this page](https://c4a-ri.github.io/dialbb-scenario-editor/).
+
 ## Build
 
 To create `editor-gui.zip` to be used with DialBB-NC, do the following:
 
-- Build frontend according to [the document](frontend/README-ja)
+- Build frontend according to [the document](frontend/README-ja.md)
 
 - Create zip with the following command:
 
