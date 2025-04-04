@@ -1,7 +1,12 @@
 {
-  "name": "gui_editor",
-  "private": true,
-  "version": "0.0.0",
+  "name": "dialbb_scenario_editor",
+  "version": "1.0.0",
+  "author": "Mikio Nakano <mikio.nakano@c4a.jp>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/c4a-ri/dialbb-scenario-editor"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -16,6 +21,7 @@
     "@types/three": "^0.155.0",
     "ant-design-vue": "^4.1.1",
     "elkjs": "^0.8.2",
+    "license-checker": "^25.0.1",
     "popmotion": "^11.0.5",
     "rete": "^2.0.0-beta.10",
     "rete-area-plugin": "^2.0.0-beta.13",
