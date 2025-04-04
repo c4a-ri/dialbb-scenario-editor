@@ -130,7 +130,7 @@ export async function createEditor(container: HTMLElement) {
     VuePresets.classic.setup({
       customize: {
         node(context) {
-          // console.log(context.payload, CustomNode);
+          // console.log(context.payload);
           if (context.payload.label === "systemNode") {
             return SystemNode;   // Systemのノード
           }
@@ -143,7 +143,8 @@ export async function createEditor(container: HTMLElement) {
           if (context.payload !== null) {
             // console.table(context.payload)
             if (context.payload instanceof CustomInputControl) {
-              if (context.payload.label == 'utterance') {
+              if (context.payload.label == 'utterance' ||
+                context.payload.label == '発話') {
                 return CustomControl;   // textAreaのコントロール
               }
               else if (context.payload.type == 'number'
