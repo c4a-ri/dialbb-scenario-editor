@@ -8,8 +8,12 @@ It is built with [rete.js](https://retejs.org/), and licensed under MIT License.
 
 ## Download
 
-The frontend program can be downloaded from [this page](https://c4a-ri.github.io/dialbb-scenario-editor/).
+The frontend installer can be downloaded from [this page](https://c4a-ri.github.io/dialbb-scenario-editor/).
 
+
+## Install
+
+Double-click installer. &emsp;e.g. `scenario-editor-installer-1.0.0-win.exe`
 
 ## Test
 
@@ -20,20 +24,16 @@ cd dialbb_scenario_editor
 python main.py
 ```
 
-Then access `http://localhost:5000` from a browser.
+Then execute `scenario-editor.exe`.
 
 ## Build
 
 To create `editor-gui.zip` to be used with DialBB-NC, do the following:
+Convert dialbb-scenario-editor to a desktop app with Electron:
 
 - Build frontend according to [the document](frontend/README-ja.md)
 
-- Create zip with the following command:
+- Build frontend to App according to [the document](electron-setup-ja.md)
 
-  ```sh
-  sh create-zip-file.sh
-  ```
-
-Then access `localhost:5000` from a browser.
 
 (c) C4A Research Institute, Inc.

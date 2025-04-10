@@ -10,7 +10,9 @@
     "test:unit": "vitest",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+    "prebuild": "cmd /C \"move ..\\dialbb_scenario_editor\\editor_gui\\main.js ..\\dialbb_scenario_editor\\_main_backup.js && move ..\\dialbb_scenario_editor\\editor_gui\\package.json ..\\dialbb_scenario_editor\\_package_backup.json\"",
+    "postbuild": "cmd /C \"move ..\\dialbb_scenario_editor\\_main_backup.js ..\\dialbb_scenario_editor\\editor_gui\\main.js && move ..\\dialbb_scenario_editor\\_package_backup.json ..\\dialbb_scenario_editor\\editor_gui\\package.json\""
   },
   "dependencies": {
     "@types/three": "^0.155.0",

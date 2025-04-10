@@ -318,7 +318,7 @@ export async function createEditor(container: HTMLElement) {
 
       try {
         // サーバに保存リクエスト送信(POST)
-        const response = await fetch('/save', {
+        const response = await fetch('http://localhost:5000/save', {
           method: 'POST',
           body: formData
         });
