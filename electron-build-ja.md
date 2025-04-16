@@ -21,7 +21,7 @@
 
 * ビルドの実行
 
-    | ファイル | 説プラットフォーム明 |
+    | コマンド | 説プラットフォーム明 |
     |---|---|
     | electron-builder --win --x64 | Windows |
     | electron-builder --mac --x64 | macOS |
@@ -34,12 +34,14 @@
     | dist/win-unpacked/* | 実行ファイル一式 |
     | dist/DialBB_Scenario_Editor-installer-x.x.x-win.exe | インストーラー（リリース物） |
 
-* デスクトップアプリの実行
+* デスクトップアプリのデバッグ実行
 
-    **dist/win-unpacked/DialBB_Scenario_Editor.exe** をダブルクリック
+    * Flaskサーバを起動：> python .\dialbb_scenario_editor\main.py
+    * **dist/win-unpacked/DialBB_Scenario_Editor.exe** をダブルクリック
 
 ### アプリのインストール
 
 * Windows  
-    インストーラーの **DialBB_Scenario_Editor-installer-x.x.x-win.exe** をダブルクリックしてインストールを実行、  
-    アンインストーラも同梱しているのでWindows設定のアプリから、または実行ファイル右クリックメニューからアンインストールが可能.
+    * インストーラーの **DialBB_Scenario_Editor-installer-x.x.x-win.exe** をダブルクリックしてインストールを実行  
+    * シナリオエディタの実行は基本的にDialBBノーコードのシナリオ編集から起動されるが、アプリ単独でもWindowsメニューから実行できる、ただしその場合はDialBBシナリオファイルの読み書きは不可となる  
+    * アンインストーラーも同梱しているのでWindows設定のアプリ/またはアプリを右クリック>メニューからアンインストールが可能
