@@ -1,0 +1,60 @@
+{
+  "name": "dialbb-scenario-editor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "editor_gui/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "editor": "electron ./editor_gui",
+    "build-win": "electron-builder --win --x64",
+    "build-mac": "electron-builder --mac --x64",
+    "build-linux": "electron-builder --linux --x64",
+    "postbuild-win": "cmd /C \"copy .\\dist\\DialBB_Scenario_Editor-*.exe ..\\docs\\files\""
+  },
+  "keywords": [],
+  "author": "Mikio Nakano",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^35.1.3",
+    "electron-builder": "^26.0.12",
+    "license-checker": "^25.0.1"
+  },
+  "build": {
+    "appId": "com.electron.dialbb",
+    "productName": "DialBB_Scenario_Editor",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "editor_gui/static/**/*",
+      "editor_gui/main.js",
+      "editor_gui/preload.js",
+      "editor_gui/index.html",
+      "package.json",
+      "package-lock.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "artifactName": "${productName}-installer-${version}-win.${ext}"
+    },
+    "mac": {
+      "target": [
+        "dmg"
+      ],
+      "artifactName": "${productName}-installer-${version}-mac.${ext}"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "artifactName": "${productName}-installer-${version}-linux.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false
+    }
+  },
+  "dependencies": {
+    "asar": "^3.2.0"
+  }
+}

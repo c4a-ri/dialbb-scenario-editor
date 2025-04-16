@@ -1,6 +1,10 @@
 // アプリケーション作成用のモジュールを読み込み
-const { app, BrowserWindow } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+
+ipcMain.handle('get-user-data-path', () => {
+  return app.getPath('userData');
+});
 
 // メインウィンドウ
 let mainWindow;
@@ -13,7 +17,10 @@ const createWindow = () => {
     webPreferences: {
       // プリロードスクリプトは、レンダラープロセスが読み込まれる前に実行され、
       // レンダラーのグローバル（window や document など）と Node.js 環境の両方にアクセスできます。
-      // preload: path.join(__dirname, "preload.js"),
+      preload: path.join(__dirname, "preload.js"),
+      contextIsolation: true,
+      nodeIntegration: false,
+      sandbox: false,
     },
   });
 

@@ -6,7 +6,7 @@ import AddNewType from './components/AddNewType.vue';
 import InfoDialog from './components/InfoDialog.vue';
 import { Space, Button } from 'ant-design-vue';
 import "./rete/styles.css";
-
+import path from 'path';
 
 const rete = ref<HTMLElement>()
 const editor = ref()
@@ -22,7 +22,6 @@ const state = reactive({
   priorityNum: ref(0)
 })
 
-const jsonDataPath = ref('static/data/init.json')
 const typeItems = ref(["example-1", "example-2", "example-3", "othe"])
 const showModal = ref(false)
 
@@ -75,16 +74,29 @@ onMounted(async () => {
   if (rete.value) {
     editor.value = await createEditor(rete.value);
 
+    // 初期ファイルの場所を取得（development/productionで違う）
+    let jsonDataPath = ""
+    console.log("env.development = "+import.meta.env.DEV)
+    if (import.meta.env.DEV) {
+      // Debug環境'development'では、projectのstatic配下
+      jsonDataPath = 'static/data/init.json'
+    } else if (window.electronAPI?.getUserDataPath) {
+      // Electronビルド後はアプリインストール環境のデータ
+      const appPath = await window.electronAPI.getUserDataPath();
+      jsonDataPath = window.electronAPI?.joinPath(appPath, 'init.json');
+    }
+    console.log("##> Path of the init.json = ", jsonDataPath);
+
     // 初期データを読み込む
     let data = {};
     try {
-      const response = await fetch(jsonDataPath.value); // 外部ファイルの取得
+      const response = await fetch(jsonDataPath); // 外部ファイルの取得
       if (!response.ok) {
-        throw new Error('Failed to fetch file. '+jsonDataPath.value);
+        throw new Error('Failed to fetch file. '+jsonDataPath);
       }
       data = await response.json(); // JSONデータに設定
     } catch (error) {
-      console.log('Failed to fetch file. '+jsonDataPath.value);
+      console.log('Failed to fetch file. '+jsonDataPath);
       console.error(error);
     }
     // Nodeを生成する

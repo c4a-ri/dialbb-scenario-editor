@@ -12,7 +12,7 @@ export class systemNode extends Classic.Node<
   >
   implements DataflowNode {
   width = 220;
-  height = 340;
+  height = 350;
   nodeId = "";
 
   constructor(

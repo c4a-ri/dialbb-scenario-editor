@@ -28,12 +28,14 @@ Then execute `scenario-editor.exe`.
 
 ## Build
 
-To create `editor-gui.zip` to be used with DialBB-NC, do the following:
-Convert dialbb-scenario-editor to a desktop app with Electron:
+If you want to customize the scenario editor, you need to create a build environment.
+
+Use Vite (Vue.js) to build the frontend, and electron to convert the web app to a desktop app.  
+The dialbb-scenario-editor requires two steps of generation.
 
 - Build frontend according to [the document](frontend/README-ja.md)
 
-- Build frontend to App according to [the document](electron-setup-ja.md)
+- Build frontend to App according to [the document](electron-build-ja.md)
 
 
 (c) C4A Research Institute, Inc.
