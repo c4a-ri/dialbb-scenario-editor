@@ -62,7 +62,7 @@
     ```json
     {
         "name": "dialbb-scenario-editor",
-        "version": "1.0.0",
+        "version": "1.0.0",		★バージョンアップする時はここを変更
         "description": "",
         "main": "main.js",		★起動アプリのメインを記載
         "scripts": {		★スクリプトは"npm run editor"で起動可
