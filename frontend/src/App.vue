@@ -105,6 +105,9 @@ onMounted(async () => {
     console.log("Types:"+st_types);
     typeItems.value = st_types;
   }
+
+  // Undo/Redoの履歴開始
+  editor.value.historyStart();
 })
 
 </script>

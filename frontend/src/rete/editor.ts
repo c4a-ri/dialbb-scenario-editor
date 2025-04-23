@@ -175,7 +175,7 @@ export async function createEditor(container: HTMLElement) {
   arrange.addPreset(ArrangePresets.classic.setup());
   area.use(arrange);
 
-  // アンドゥ機能の登録
+  // Undo/Redo setup
   history.addPreset(HistoryPresets.classic.setup());
   HistoryExtensions.keyboard(history);
   area.use(history);
@@ -277,7 +277,7 @@ export async function createEditor(container: HTMLElement) {
   }
 
   (window as any).area = area;
-  
+
   // --------------------------
   // Reset Editor
   // --------------------------
@@ -341,10 +341,19 @@ export async function createEditor(container: HTMLElement) {
     return {};
   }
 
+  // --------------------------
+  // Undo/Redo start up
+  // --------------------------
+  async function historyStart() {
+    // Reset history when loading initial node completes.
+    history.clear();
+  }
+
   return {
     resetEditor,
     openModule,
     saveModule,
+    historyStart,
     destroy: () => {
       console.log("area.destroy1", area.nodeViews.size);
       area.destroy();
