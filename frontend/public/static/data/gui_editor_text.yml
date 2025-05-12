@@ -1,0 +1,122 @@
+# シナリオエディタ表示テキストの多言語ファイル
+
+# ----- ノード関連 -----
+# システムノード
+node_sys_title:
+  ja: "システム"
+  en: "System"
+
+node_sys_type:
+  ja: "ノードタイプ"
+  en: "node type"
+
+node_sys_utter:
+  ja: "発話"
+  en: "utterance"
+
+# ユーザノード
+node_usr_title:
+  ja: "ユーザ"
+  en: "User"
+
+node_usr_priority:
+  ja: "優先度"
+  en: "priority"
+
+node_usr_utter:
+  ja: "発話例"
+  en: "user utterance example"
+
+node_usr_type:
+  ja: "発話タイプ"
+  en: "user utterance type"
+
+node_usr_condition:
+  ja: "遷移の条件"
+  en: "conditions"
+
+node_usr_action:
+  ja: "遷移時のアクション"
+  en: "actions"
+
+
+# ----- ダイアログ関連 -----
+# コンテキストメニュー：背景上
+contextMenu_sys:
+  ja: "システムノード追加"
+  en: "Add SystemNode"
+
+contextMenu_usr:
+  ja: "ユーザノード追加"
+  en: "Add UserNode"
+
+
+# コンテキストメニュー：ノード上
+contextMenu_del:
+  ja: "削除"
+  en: "Delete"
+
+contextMenu_edit:
+  ja: "編集"
+  en: "Edit"
+
+
+# Settingダイアログ
+setting_sys_type:
+  ja: "ノードタイプ"
+  en: "node type"
+
+setting_sys_utter:
+  ja: "発話"
+  en: "utterance"
+
+setting_usr_priority:
+  ja: "優先度（0以上の整数）"
+  en: "priority number(integer greater than or equal to 0)"
+
+setting_usr_utter:
+  ja: "ユーザ発話の例（使われません）"
+  en: "user utterance example(not used)"
+
+setting_usr_type:
+  ja: "ユーザ発話タイプ"
+  en: "user utterance type"
+
+setting_usr_condition:
+  ja: "遷移の条件"
+  en: "conditions"
+
+setting_usr_action:
+  ja: "遷移時のアクション（上級者用）"
+  en: "actions(for advanced users)"
+
+
+# ----- ボタン表記 -----
+btn_ok:
+  ja: "OK"
+  en: "OK"
+
+btn_cancel:
+  ja: "キャンセル"
+  en: "Cancel"
+
+btn_save:
+  ja: "保存"
+  en: "Save"
+
+btn_close:
+  ja: "閉じる"
+  en: "Close"
+
+
+# ----- 表示メッセージ -----
+# エディタ起動通知
+main_window_title:
+  ja: "DialBB GUI シナリオエディタ"
+  en: "DialBB GUI Scenario Editor"
+
+msg_data_saved:
+  ja: "データを保存しました。"
+  en: "Data saved."
+
+

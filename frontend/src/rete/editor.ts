@@ -35,7 +35,7 @@ import {
   systemNode,
   userNode
 } from "./nodes";
-import { clearEditor } from "./utils";
+import { clearEditor, guiText } from "./utils";
 import { createNode, importEditor } from "./import";
 import rootModule from "../data/base.json";
 
@@ -184,8 +184,8 @@ export async function createEditor(container: HTMLElement) {
   // コンテキストメニューの定義
   const contextMenu = new ContextMenuPlugin<Schemes>({
     items: ContextMenuPresets.classic.setup([
-      ["システムノード追加", () => createNode(context, "systemNode", null)],
-      ["ユーザノード追加", () => createNode(context, "userNode", null)],
+      [guiText("contextMenu_sys"), () => createNode(context, "systemNode", null)],
+      [guiText("contextMenu_usr"), () => createNode(context, "userNode", null)],
     ])
   });
   area.use(contextMenu);

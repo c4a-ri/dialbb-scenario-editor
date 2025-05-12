@@ -55,3 +55,16 @@ export class CustomInputControl<T extends 'text' | 'number', N = T extends 'text
     this.hide = hide;   // show or hide
   }
 }
+
+/**
+ * GUI表示テキスト(多言語データ)の取得
+ * @param key 
+ */
+export function guiText(key: string) {
+  const t = window.electronAPI?.guiText ?? {};
+  if (key in t) {
+    return t[key];
+  } else {
+    console.warn(`Missing gui_text for key: "${key}"`);
+    return `!miss: ${key}`;
+  }}

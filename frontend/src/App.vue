@@ -6,7 +6,7 @@ import AddNewType from './components/AddNewType.vue';
 import InfoDialog from './components/InfoDialog.vue';
 import { Space, Button } from 'ant-design-vue';
 import "./rete/styles.css";
-import path from 'path';
+import { guiText } from "./rete/utils";
 
 const rete = ref<HTMLElement>()
 const editor = ref()
@@ -22,8 +22,9 @@ const state = reactive({
   priorityNum: ref(0)
 })
 
-const typeItems = ref(["example-1", "example-2", "example-3", "othe"])
-const showModal = ref(false)
+const typeItems = ref(["example-1", "example-2", "example-3", "othe"]);
+const showModal = ref(false);
+const btnLabel_save = guiText("btn_save");
 
 // データセーブ[Save]
 const doExport =  async () => {
@@ -33,7 +34,7 @@ const doExport =  async () => {
     openInformationDialog('Warning', result['warning']);
   }
   else {
-    openInformationDialog('Information', 'データを保存しました。');
+    openInformationDialog('Information', guiText('msg_data_saved'));
   }
 }
 
@@ -73,6 +74,8 @@ onMounted(async () => {
   // Rete Viewport 表示
   if (rete.value) {
     editor.value = await createEditor(rete.value);
+    console.log("Receve guiText:")
+    console.table(window.electronAPI?.guiText)
 
     // 初期ファイルの場所を取得（development/productionで違う）
     let jsonDataPath = ""
@@ -99,6 +102,7 @@ onMounted(async () => {
       console.log('Failed to fetch file. '+jsonDataPath);
       console.error(error);
     }
+
     // Nodeを生成する
     const st_types = await editor.value.openModule(data);
     // 取得した発話タイプ一覧をプルダウンリストに初期設定する
@@ -122,7 +126,7 @@ onMounted(async () => {
     <header>
       <Space class="container" size="small">
         <h3>DialBB GUI Scenario Editor</h3>
-        <Button type="primary" class="custom-button" size="middle" @click="doExport()">Save</Button>
+        <Button type="primary" class="custom-button" size="middle" @click="doExport()">{{ btnLabel_save }}</Button>
       </Space>
       <Button id="openModalBtn" class="hidden" size="small" @click="onChildMethodClick">
       Open Modal</Button>

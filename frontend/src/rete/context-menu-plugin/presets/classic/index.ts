@@ -10,6 +10,7 @@ import {
   userNode
 } from "../../../nodes";
 import { Connection } from "../../../editor";
+import { guiText } from "../../../utils";
 
 /**
  * Classic context menu preset.
@@ -39,7 +40,7 @@ export function setup<Schemes extends BSchemes>(nodes: ItemDefinition<Schemes>[]
     }
 
     const deleteItem: Item = {
-      label: '削除',
+      label: guiText('contextMenu_del'),
       key: 'delete',
       async handler() {
         if (context instanceof systemNode ||
@@ -77,7 +78,7 @@ export function setup<Schemes extends BSchemes>(nodes: ItemDefinition<Schemes>[]
 
     // Dialog Pop-up (added ohtaki)
     const dialogItem: Item = {
-      label: '編集',
+      label: guiText('contextMenu_edit'),
       key: 'dialog',
       async handler() {
         const nodeId = context.id

@@ -1,6 +1,6 @@
 <template>
   <div class="node" :class="{ selected: data.selected }" :style="nodeStyles()" data-testid="node">
-    <div class="title" data-testid="title">ユーザ</div>
+    <div class="title" data-testid="title">{{ data.title }}</div>
     <div class="node-id-p"><div v-if="id" class="node-id-c">id:{{ id }}</div></div>
     <div class="socket-list">
       <!-- Inputs-->

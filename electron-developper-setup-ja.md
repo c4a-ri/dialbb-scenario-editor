@@ -121,7 +121,7 @@
     | ファイル | 説明 |
     |---|---|
     | dist/win-unpacked/* | 実行ファイル一式 |
-    | dist/scenario-editor-installer-x.x.x-win.exe | インストーラー（リリース物） |
+    | dist/DialBB_Scenario_Editor-installer-x.x.x-win.exe | インストーラー（リリース物） |
 
 * デスクトップアプリの実行
 
@@ -130,7 +130,7 @@
 ### アプリのインストール
 
 * Windows  
-    インストーラーの **scenario-editor-installer-x.x.x-win.exe** をダブルクリックしてインストール、保存先は固定（\Users\<ユーザ名>\AppData\Roaming\<アプリ名>）、  
+    インストーラーの **DialBB_Scenario_Editor-installer-x.x.x-win.exe** をダブルクリックしてインストール、保存先は固定（\Users\<ユーザ名>\AppData\Roaming\<アプリ名>）、  
     アンインストーラーも同梱しているのでWindows設定のアプリから、または実行ファイル右クリックメニューからアンインストールが可能.
 
 ## ２．dialbbと連携させる

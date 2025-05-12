@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "editor": "electron ./editor_gui",
+    "editor-en": "electron ./editor_gui --lang=en",
     "build-win": "electron-builder --win --x64",
     "build-mac": "electron-builder --mac --x64",
     "build-linux": "electron-builder --linux --x64",
@@ -18,6 +19,10 @@
     "electron": "^35.1.3",
     "electron-builder": "^26.0.12",
     "license-checker": "^25.0.1"
+  },
+  "dependencies": {
+    "asar": "^3.2.0",
+    "js-yaml": "^4.1.0"
   },
   "build": {
     "appId": "com.electron.dialbb",
@@ -53,8 +58,5 @@
       "oneClick": false,
       "allowToChangeInstallationDirectory": false
     }
-  },
-  "dependencies": {
-    "asar": "^3.2.0"
   }
 }

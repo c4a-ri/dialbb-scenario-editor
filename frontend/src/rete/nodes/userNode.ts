@@ -1,7 +1,7 @@
 import { ClassicPreset as Classic } from "rete";
 import type { DataflowNode } from "rete-engine";
 import { socket } from "../sockets";
-import { CustomInputControl } from "../utils";
+import { CustomInputControl, guiText } from "../utils";
 
 export class userNode extends Classic.Node<
     { state: Classic.Socket },    // Input socket
@@ -18,6 +18,7 @@ export class userNode extends Classic.Node<
   width = 220;
   height = 390;
   nodeId = "";
+  title = guiText("node_usr_title");
 
   constructor(
     // change?: (value: number) => void,
@@ -35,27 +36,27 @@ export class userNode extends Classic.Node<
     // Rowソート番号
     this.addControl(
       "seqnum",
-      new CustomInputControl("number", "優先度", { initial: seqnum, readonly: true })
+      new CustomInputControl("number", guiText("node_usr_priority"), { initial: seqnum, readonly: true })
     );
     // ユーザ発話
     this.addControl(
       "utterance",
-      new CustomInputControl("text", "発話例", { initial: userUtter, readonly: true })
+      new CustomInputControl("text", guiText("node_usr_utter"), { initial: userUtter, readonly: true })
     );
     // ユーザ発話タイプ
     this.addControl(
       "type",
-      new CustomInputControl("text", "発話タイプ", { initial: type, readonly: true })
+      new CustomInputControl("text", guiText("node_usr_type"), { initial: type, readonly: true })
     );
     // 条件
     this.addControl(
       "conditions",
-      new CustomInputControl("text", "遷移の条件", { initial: conditions, readonly: true })
+      new CustomInputControl("text", guiText("node_usr_condition"), { initial: conditions, readonly: true })
     );
     // アクション
     this.addControl(
       "actions",
-      new CustomInputControl("text", "遷移時のアクション", { initial: actions, readonly: true })
+      new CustomInputControl("text", guiText("node_usr_action"), { initial: actions, readonly: true })
     );
     // 遷移する状態
     this.addControl(

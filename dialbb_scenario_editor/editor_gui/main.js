@@ -28,7 +28,7 @@ const createWindow = () => {
   // （今回はmain.jsと同じディレクトリのindex.html）
   mainWindow.loadFile(__dirname + "/index.html");
 
-  // デベロッパーツールの起動
+  // デベロッパーツールの起動(DEBUG)
   // mainWindow.webContents.openDevTools();
 
   // メインウィンドウが閉じられたときの処理

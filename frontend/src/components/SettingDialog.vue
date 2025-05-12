@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, onBeforeUpdate } from 'vue'
+import { ref, onBeforeUpdate, reactive } from 'vue'
 import { saveNodeValue } from '../rete/editor';
+import { guiText } from '../rete/utils';
 
 const open = ref(false)
 
@@ -41,6 +42,23 @@ onBeforeUpdate(() => {
   selectItems.value = props.typeItems;
   inputPriNum.value = props.priorityNum;
 });
+
+// ダイアログの表示ラベルをセットアップ（多言語対応）
+const data = reactive({
+  sys_type: guiText("setting_sys_type"),
+  sys_utter: guiText("setting_sys_utter"),
+  usr_priority: guiText("setting_usr_priority"),
+  usr_utter: guiText("setting_usr_utter"),
+  usr_type: guiText("setting_usr_type"),
+  usr_condition: guiText("setting_usr_condition"),
+  usr_action: guiText("setting_usr_action"),
+})
+
+// ボタンの表記（多言語対応）
+const btnLabel = reactive({
+  cancel: guiText("btn_cancel"),
+  save: guiText("btn_save"),
+})
 
 // 関数の実装（公開はdefineExposeで）
 // モーダルウィンドウ表示 (コンテキストメニュー：[Setting])
@@ -108,41 +126,41 @@ defineExpose({
               <div class="modal-body">
                 <div v-if="nodeKind == 'systemNode'">
                   <div class="dropdown">
-                    <label for="status-type" class="col-form-label">type:</label>
+                    <label for="status-type" class="col-form-label">{{ data.sys_type }}:</label>
                     <select class="form-select" aria-label="Default select example" v-model="inputStatusType">
                         <option value='' disabled selected style='display:none;'>Select type</option>
                         <option v-for="state in selectItems">{{ state }}</option>
                     </select>
                   </div>
                   <div class="mb-3">
-                      <label for="system-utter" class="col-form-label">utterance:</label>
+                      <label for="system-utter" class="col-form-label">{{ data.sys_utter }}:</label>
                       <textarea class="form-control" id="system-utter" v-model="inputSystem"
                                   title="Input the system utterance"></textarea>
                   </div>
                 </div>
                 <div v-else-if="nodeKind == 'userNode'">
                   <div class="mb-3">
-                      <label for="user-num" class="col-form-label">優先度（0以上の整数）:</label>
+                      <label for="user-num" class="col-form-label">{{ data.usr_priority }}:</label>
                       <input type="number" id="user-num" v-model="inputPriNum"
                                   title="Input the priority number in the state"></input>
                   </div>
                   <div class="mb-3">
-                      <label for="user-utter" class="col-form-label">ユーザ発話の例（使われません）:</label>
+                      <label for="user-utter" class="col-form-label">{{ data.usr_utter }}:</label>
                       <textarea class="form-control" id="user-utter" v-model="inputUser"
                                   title="Input the user utterance example"></textarea>
                   </div>
                   <div class="mb-3">
-                      <label for="utter-type" class="col-form-label">ユーザ発話タイプ:</label>
+                      <label for="utter-type" class="col-form-label">{{ data.usr_type }}:</label>
                       <textarea class="form-control" id="utter-type" v-model="inputType"
                                   title="Input the user utterance type"></textarea>
                   </div>
                   <div class="mb-3">
-                      <label for="condition" class="col-form-label">遷移の条件:</label>
+                      <label for="condition" class="col-form-label">{{ data.usr_condition }}:</label>
                       <textarea class="form-control" id="condition" v-model="inputCondition"
                                   title="Input the conditions"></textarea>
                   </div>
                   <div class="mb-3">
-                      <label for="action" class="col-form-label">遷移時のアクション（上級者用）:</label>
+                      <label for="action" class="col-form-label">{{ data.usr_action }}:</label>
                       <textarea class="form-control" id="user-utter" v-model="inputAction"
                                   title="Input the actions"></textarea>
                   </div>
@@ -150,8 +168,8 @@ defineExpose({
               </div>
               <!-- フッター部 -->
               <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="doClose">Close</button>
-                  <button type="button" class="btn btn-primary" @click="doSave">Save</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @click="doClose">{{ btnLabel.cancel }}</button>
+                  <button type="button" class="btn btn-primary" @click="doSave">{{ btnLabel.save }}</button>
               </div>
             </div>
           </div>

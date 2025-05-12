@@ -1,7 +1,7 @@
 import { ClassicPreset as Classic } from "rete";
 import type { DataflowNode } from "rete-engine";
 import { socket } from "../sockets";
-import { CustomInputControl } from "../utils";
+import { CustomInputControl, guiText } from "../utils";
 
 export class systemNode extends Classic.Node<
   { state: Classic.Socket },    // Input socket
@@ -14,6 +14,7 @@ export class systemNode extends Classic.Node<
   width = 220;
   height = 350;
   nodeId = "";
+  title = guiText("node_sys_title");
 
   constructor(
     // change?: (value: number) => void,
@@ -28,7 +29,7 @@ export class systemNode extends Classic.Node<
     // 状態-タイプ
     this.addControl(
       "type",
-      new CustomInputControl("text", "ノードタイプ", { initial: type, readonly: true })
+      new CustomInputControl("text", guiText("node_sys_type"), { initial: type, readonly: true })
     );
     // 状態-名称（不要になったので隠す）
     this.addControl(
@@ -38,7 +39,7 @@ export class systemNode extends Classic.Node<
     // システム発話パターン
     this.addControl(
       "utterance",
-      new CustomInputControl("text", "発話", { initial: sysUtter, readonly: true })
+      new CustomInputControl("text", guiText("node_sys_utter"), { initial: sysUtter, readonly: true })
     );
 
     // 入出力ソケットの実装
