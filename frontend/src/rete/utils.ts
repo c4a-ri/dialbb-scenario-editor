@@ -1,5 +1,6 @@
 import { NodeEditor, ClassicPreset } from "rete";
 import type { Schemes } from "./editor";
+import yaml from 'js-yaml';
 
 
 export async function removeConnections(
@@ -56,15 +57,49 @@ export class CustomInputControl<T extends 'text' | 'number', N = T extends 'text
   }
 }
 
+
+/**
+ * GUIテキスト言語対応テーブル(Global)
+ */
+let guiTextTable: Record<string, string> = {};
+
+/**
+ *  GUIで利用するラベルなどの言語データ読み込み
+ * @param key 
+ */
+export async function loadGuiTextData(lang: string) {
+  // 多言語ファイルのパス
+  const filePath = 'static/data/gui_editor_text.yml'
+  console.log("loadGuiTextData() lang=", lang, "file=", filePath);
+
+  // GUI表示の多言語ファイルを読み込む
+  try {
+    const response = await fetch(filePath);
+    if (!response.ok) {
+      throw new Error('Failed to fetch file: gui_editor_text.yml');
+    }
+    // YAMLデータに設定
+    const raw = yaml.load(await response.text()) as Record<string, Record<string, string>>;
+    // 指定言語の辞書を作成
+    guiTextTable = Object.fromEntries(
+      Object.entries(raw).map(([key, val]) => [key, val[lang] || key])
+    );
+  }
+  catch (error) {
+    console.log('Failed to fetch file. '+filePath);
+    console.error(error);
+  }
+}
+
 /**
  * GUI表示テキスト(多言語データ)の取得
  * @param key 
  */
 export function guiText(key: string) {
-  const t = window.electronAPI?.guiText ?? {};
-  if (key in t) {
-    return t[key];
+  if (key in guiTextTable) {
+    return guiTextTable[key];
   } else {
     console.warn(`Missing gui_text for key: "${key}"`);
     return `!miss: ${key}`;
-  }}
+  }
+}

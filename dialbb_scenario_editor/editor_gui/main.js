@@ -1,10 +1,17 @@
 // アプリケーション作成用のモジュールを読み込み
 const { app, BrowserWindow, ipcMain } = require("electron");
 const path = require("path");
+const { pathToFileURL } = require('url');
+
 
 ipcMain.handle('get-user-data-path', () => {
   return app.getPath('userData');
 });
+
+// 起動引数から言語を取得
+const langArg = (process.argv.find(arg => arg.startsWith('--lang=')) || '--lang=ja').split('=')[1];
+const lang = langArg.startsWith('en') ? 'en' : langArg.startsWith('ja') ? 'ja' : 'ja';
+console.log("lang:"+lang)
 
 // メインウィンドウ
 let mainWindow;
@@ -24,9 +31,10 @@ const createWindow = () => {
     },
   });
 
-  // メインウィンドウに表示するURLを指定します
-  // （今回はmain.jsと同じディレクトリのindex.html）
-  mainWindow.loadFile(__dirname + "/index.html");
+  // メインウィンドウに表示するURLを指定（同じディレクトリのindex.html）
+  // mainWindow.loadFile(__dirname + `/index.html?lang=${lang}`);
+  const filePath = pathToFileURL(path.join(__dirname, 'index.html')).href;
+  mainWindow.loadURL(`${filePath}?lang=${lang}`);
 
   // デベロッパーツールの起動(DEBUG)
   // mainWindow.webContents.openDevTools();

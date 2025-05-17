@@ -7,7 +7,6 @@ declare global {
     electronAPI: {
       getUserDataPath: () => Promise<string>;
       joinPath: (...args: string[]) => string;
-      guiText: Record<string, string>;
     };
   }
 }

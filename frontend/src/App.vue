@@ -74,19 +74,23 @@ onMounted(async () => {
   // Rete Viewport 表示
   if (rete.value) {
     editor.value = await createEditor(rete.value);
-    console.log("Receve guiText:")
-    console.table(window.electronAPI?.guiText)
 
     // 初期ファイルの場所を取得（development/productionで違う）
     let jsonDataPath = ""
+    let langFilePath = '';
     console.log("env.development = "+import.meta.env.DEV)
     if (import.meta.env.DEV) {
       // Debug環境'development'では、projectのstatic配下
       jsonDataPath = 'static/data/init.json'
-    } else if (window.electronAPI?.getUserDataPath) {
+      // 多言語ファイルのパス
+      langFilePath = 'static/data/gui_editor_text.yml'
+    }
+    else if (window.electronAPI?.getUserDataPath) {
       // Electronビルド後はアプリインストール環境のデータ
       const appPath = await window.electronAPI.getUserDataPath();
       jsonDataPath = window.electronAPI?.joinPath(appPath, 'init.json');
+      // 多言語ファイルのパス
+      langFilePath = window.electronAPI?.joinPath(appPath, 'gui_editor_text.yml')
     }
     console.log("##> Path of the init.json = ", jsonDataPath);
 
