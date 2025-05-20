@@ -2,15 +2,16 @@
   "name": "dialbb-scenario-editor",
   "version": "1.0.0",
   "description": "",
-  "main": "editor_gui/main.js",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "editor": "electron ./editor_gui",
-    "editor-en": "electron ./editor_gui --lang=en",
-    "build-win": "electron-builder --win --x64",
-    "build-mac": "electron-builder --mac --x64",
-    "build-linux": "electron-builder --linux --x64",
-    "postbuild-win": "cmd /C \"copy .\\dist\\DialBB_Scenario_Editor-*.exe ..\\docs\\files\""
+    "editor": "electron .",
+    "editor-en": "electron . --lang=en",
+    "prebuild": "node scripts/prebuild.js",
+    "postbuild": "node scripts/postbuild.js",
+    "build-win": "npm run prebuild && electron-builder --win --x64 && npm run postbuild",
+    "build-mac": "npm run prebuild && electron-builder --mac --x64 && npm run postbuild",
+    "build-linux": "npm run prebuild && electron-builder --linux --x64 && npm run postbuild"
   },
   "keywords": [],
   "author": "Mikio Nakano",
@@ -29,32 +30,35 @@
       "output": "dist"
     },
     "files": [
-      "editor_gui/static/**/*",
-      "editor_gui/main.js",
-      "editor_gui/preload.js",
-      "editor_gui/index.html",
+      "editor_gui/**/*",
+      "main.js",
+      "preload.js",
       "package.json",
-      "package-lock.json"
+      "package-lock.json",
+      "LICENSE"
     ],
     "win": {
       "target": "nsis",
       "artifactName": "${productName}-installer-${version}-win.${ext}"
     },
     "mac": {
-      "target": [
-        "dmg"
-      ],
+      "target": "pkg",
       "artifactName": "${productName}-installer-${version}-mac.${ext}"
     },
     "linux": {
       "target": [
-        "AppImage"
+        "AppImage",
+        "deb"
       ],
       "artifactName": "${productName}-installer-${version}-linux.${ext}"
     },
     "nsis": {
       "oneClick": false,
-      "allowToChangeInstallationDirectory": false
+      "allowToChangeInstallationDirectory": false,
+      "license": "LICENSE"
+    },
+    "pkg": {
+      "license": "LICENSE"
     }
   }
 }

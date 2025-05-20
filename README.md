@@ -17,7 +17,8 @@ Double-click installer. &emsp;e.g. `scenario-editor-installer-1.0.0-win.exe`
 
 ## Test
 
-To test the scenario editor, type the following to invoke the server.
+To launch the Scenario Editor on its own, run the app file after installation (or it may be available from a menu).  
+See the developer documentat below for more information.
 
 ```sh
 cd dialbb_scenario_editor
@@ -35,7 +36,8 @@ The dialbb-scenario-editor requires two steps of generation.
 
 - Build frontend according to [the document](frontend/README-ja.md)
 
-- Build frontend to App according to [the document](electron-build-ja.md)
+- Build frontend to App according to [the document](dialbb_scenario_editor/electron-build-ja.md)
 
+- DialBB Developer Documentat : [the document](electron-developper-setup-ja.md)
 
 (c) C4A Research Institute, Inc.

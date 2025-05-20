@@ -62,13 +62,13 @@
     ```json
     {
         "name": "dialbb-scenario-editor",
-        "version": "1.0.0",		★バージョンアップする時はここを変更
+        "version": "1.0.0",  ※バージョンアップする時はここを変更
         "description": "",
-        "main": "main.js",		★起動アプリのメインを記載
-        "scripts": {		★スクリプトは"npm run editor"で起動可
+        "main": "main.js",  ※起動アプリのメインを記載
+        "scripts": {        ※スクリプトは"npm run editor"で起動可
             "test": "echo \"Error: no test specified\" && exit 1",
-            "editor": "electron .",						★ｼﾅﾘｵｴﾃﾞｨﾀを起動する
-            "build-win": "electron-builder --win --x64",	★windows用ビルドを起動する
+            "editor": "electron .",      ※ｼﾅﾘｵｴﾃﾞｨﾀを起動する
+            "build-win": "electron-builder --win --x64", ※windows用ビルドを起動する
             "build-mac": "electron-builder --mac --x64",
             "build-linux": "electron-builder --linux --x64"
         },
@@ -76,35 +76,32 @@
         "author": "Mikio Nakano",
         "license": "MIT",
         "devDependencies": {
-            "electron": "^35.0.3",			★npm installしたライブラリ(自動追記)
+            "electron": "^35.0.3",   ※npm installしたライブラリ(自動追記)
             "electron-builder": "^26.0.12"
         },
         "build": {
-            "appId": "com.electron.dialbb",		★アプリ識別子（ドメイン形式推奨）
-            "productName": "DialBB_Scenario_Editor",	★exe出力するアプリ名
+            "appId": "com.electron.dialbb",   ※アプリ識別子（ドメイン形式推奨）
+            "productName": "DialBB_Scenario_Editor", ※exe出力するアプリ名
             "directories": {
-            "output": "dist"			★ビルド結果を出力する場所
+            "output": "dist"   ※ビルド結果を出力する場所
             },
-            "files": [			★配布パッケージに含めるファイルを記載する
+        "files": [   ※配布パッケージに含めるファイルを記載する
             "static/**/*",
             "main.js",
-            "index.html",
             "package.json",
-            "package-lock.json"
-            ],
-            "mac": {
-            "target": [
-                "dmg"
-            ]
-            },
-            "win": {
+            "preload.js"
+        ],
+        "win": {
             "target": "nsis"
-            },
-            "nsis": {
+        },
+        "mac": {
+            "target": "dmg"
+        },
+        "nsis": {
             "oneClick": false,
             "allowToChangeInstallationDirectory": true
-            }
-        },
+        }
+    },
   }
     ```
 
@@ -112,18 +109,17 @@
 
     ```powershell
     npm run build-win
-    または
-    npx electron-builder --win --x64
+    ※内部的にはElectronを実行 ： npx electron-builder --win --x64
     ```
 
-    生成物（Windows）
+    生成物
 
     | ファイル | 説明 |
     |---|---|
     | dist/win-unpacked/* | 実行ファイル一式 |
     | dist/DialBB_Scenario_Editor-installer-x.x.x-win.exe | インストーラー（リリース物） |
 
-* デスクトップアプリの実行
+* デスクトップアプリの実行（Windowsの場合）
 
     **dist/win-unpacked/scenario-editor.exe** をダブルクリック
 
@@ -135,56 +131,66 @@
 
 ## ２．dialbbと連携させる
 
-* エディタからサーバにPOSTしている個所に修正が必要  
+1. エディタからサーバにPOSTしている個所に修正が必要  
 理由：Flaskサーバとアプリが別々に起動するため
-* frontend/src/rete/editor.ts または assets/index-xxxxxx.js を編集する  
-    [before]
 
-    ```python
-    await fetch('/save', {
-          method: 'POST',
-            ：
-    ```
+    * frontend/src/rete/editor.ts または assets/index-xxxxxx.js を編集する  
+        [before]  
 
-    [after]
+        ```python
+            await fetch('/save', {
+                method: 'POST',
+                    ：
+        ```
 
-    ```python
-    await fetch('http://localhost:5000/save', {
-          method: 'POST',
-            ：
-    ```
+        [after]  
 
-* Electronで再ビルドする
+        ```python
+        await fetch('http://localhost:5000/save', {
+            method: 'POST',
+                ：
+        ```
 
-    ```powershell
-    npm run build-win
-    ```
+    * frontendをビルド  
 
-* ノーコードのGUIからアプリを起動するように修正  
-dialbb/no_code/editor_main.pyのexec_editor()を以下のように修正  
-    [before]
+        ```powershell
+        cd frontend
+        npm run build
+        ```
 
-    ```python
-    subprocess.Popen(["start", "msedge", "--app=http://localhost:5000/"], shell=True)
-            ：
-    # stop server   サーバ停止
-    editor_proc.stop()
-    ```
+    * Electronで再ビルド  
 
-    [after]
+        ```powershell
+        cd ..\dialbb_scenario_editor
+        npm run build-win
+        ```
 
-    ```python
-    cmd = os.path.join(NC_PATH, "win-unpacked", "scenario-editor.exe")
-    editor_apl = subprocess.Popen(cmd, shell=True)
-            ：
-    # エディタアプリ停止
-    os.system(f"taskkill /F /T /PID {editor_apl.pid}")
+1. ノーコードのGUIからアプリを起動するように修正  
 
-    # stop server   サーバ停止
-    editor_proc.stop()
-    ```
+    * dialbb/no_code/editor_main.pyのexec_editor()を以下のように修正  
+        [before]
 
-* 動作確認  
+        ```python
+        subprocess.Popen(["start", "msedge", "--app=http://localhost:5000/"], shell=True)
+                ：
+        # stop server   サーバ停止
+        editor_proc.stop()
+        ```
+
+        [after]
+
+        ```python
+        cmd = os.path.join(NC_PATH, "win-unpacked", "scenario-editor.exe")
+        editor_apl = subprocess.Popen(cmd, shell=True)
+                ：
+        # エディタアプリ停止
+        os.system(f"taskkill /F /T /PID {editor_apl.pid}")
+
+        # stop server   サーバ停止
+        editor_proc.stop()
+        ```
+
+1. 動作確認  
     1. scenario-editor.exeをダブルクリックしてシナリオエディタを起動
     1. ノーコードのGUIを起動
     1. GUIの[編集] > [シナリオ]をクリックしてシナリオエディタのアプリが起動すること
@@ -202,6 +208,60 @@ dialbb/no_code/editor_main.pyのexec_editor()を以下のように修正
     1. ノーコード側でプラットフォームに合わせた実行ファイルを起動する処理が必要  
     exec_editor()を改造する
 
-## 今後の発展形
+## ４. シナリオエディタの日本語／英語表示切替について
 
-* シナリオエディタアプリ側でExcel変換処理まで実装すればdialbbでのシナリオエディタ用Flaskサーバは不要にできるはず.
+* 画面の表示テキストを外部ファイルに定義することによりGUIを日本語と英語表示に切り替え可能にしました.
+
+  * ファイルの内容 : YAML形式
+
+    ```yaml
+    greeting:               ※使用する時のインデックス
+        ja: "こんにちは！"   ※日本語表記
+        en: "Hello!"        ※英語表記
+
+    yes_button:
+        ja: "はい"
+        en: "Yes"
+        　　：
+    ```
+
+    * ファイルの場所
+
+    ```sh
+    frontend/public/static/data/gui_editor_text.yml
+    ```
+
+    * 実行方法
+
+      * DialBBノーコードから起動された場合は、dialbbで指定された言語を継承する。  
+        デバッグなどでシナリオエディタ単体で起動するパターンは以下となる、
+
+        * Vue.jsの場合
+
+        ```powershell
+        cd frontend
+        npm run dev
+        ブラウザ：http://localhost:5173/?lang=ja    ※日本語版
+        ブラウザ：http://localhost:5173/?lang=en    ※英語版
+        ```
+
+        * Electronの場合
+
+        ```powershell
+        cd dialbb_scenario_editor
+        npm run dev
+        npm run editor      ※日本語版
+        npm run editor-en   ※英語版
+        ```
+
+        * インストール済みのデスクトップアプリの場合
+
+        ```text
+        (Windowsの場合)
+        ※日本語版：メニューから"DialBB_Scenario_Editor"選択
+                    または DialBB_Scenario_Editor.exeダブルクリック
+        ※英語版：コマンドプロンプトで
+                    > cd AppData\Local\Programs\DialBB_Scenario_Editor
+                    > DialBB_Scenario_Editor.exe --lang=en
+                  または、"--lang=en"引数付きのショートカット／バッチファイルを作成
+        ```
