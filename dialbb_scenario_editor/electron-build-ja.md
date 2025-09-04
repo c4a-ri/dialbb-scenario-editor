@@ -17,7 +17,7 @@
 
     node_modulesが作成され、electron/electron-builderのバージョンが表示されること
 
-### シナリオエディタをビルド
+### シナリオエディタをビルド （frontendを修正した場合のみ必要）
 
 * フロントエンドのビルド方法は[こちら](../frontend/README-ja.md)
 
