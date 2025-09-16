@@ -1,7 +1,7 @@
 {
   "name": "dialbb-scenario-editor",
   "version": "1.0.0",
-  "description": "",
+  "description": "DialBB Scenario Editor for creating and editing scenarios",
   "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -33,8 +33,6 @@
       "editor_gui/**/*",
       "main.js",
       "preload.js",
-      "package.json",
-      "package-lock.json",
       "LICENSE"
     ],
     "win": {
